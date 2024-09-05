@@ -3,6 +3,6 @@ spring:
     name: allianz-interview-be
   data:
     mongodb:
-      uri: mongodb://root:example@192.168.0.152:27017/school
+      uri: mongodb://root:example@192.168.0.152:27017/school?authSource=admin
 
 
