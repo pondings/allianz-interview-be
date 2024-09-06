@@ -1,5 +1,6 @@
 package com.allianz.app.student.controller;
 
+import com.allianz.app.student.model.StudentCriteria;
 import com.allianz.app.student.model.StudentDto;
 import com.allianz.app.student.service.StudentService;
 import lombok.AllArgsConstructor;
@@ -15,8 +16,8 @@ public class StudentController {
     StudentService studentService;
 
     @GetMapping
-    public List<StudentDto> getAll() {
-        return studentService.getAll();
+    public List<StudentDto> getAll(StudentCriteria criteria) {
+        return studentService.getAll(criteria);
     }
 
     @PostMapping
