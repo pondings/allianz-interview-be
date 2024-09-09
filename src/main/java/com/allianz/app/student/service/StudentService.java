@@ -1,5 +1,6 @@
 package com.allianz.app.student.service;
 
+import com.allianz.app.common.constant.Status;
 import com.allianz.app.student.mapper.StudentMapper;
 import com.allianz.app.student.model.StudentCriteria;
 import com.allianz.app.student.model.StudentDto;
@@ -39,6 +40,9 @@ public class StudentService {
         if (Objects.nonNull(criteria.getAge())) {
             builder.and(QStudentEntity.studentEntity.age.eq(criteria.getAge()));
         }
+
+        builder.and(QStudentEntity.studentEntity.courses.any().status.eq(Status.ACTIVE.toString()));
+        builder.and(QStudentEntity.studentEntity.status.eq(Status.ACTIVE.toString()));
 
         return studentRepository.findAll(builder)
                 .stream()

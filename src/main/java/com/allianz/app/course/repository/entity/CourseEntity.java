@@ -1,6 +1,6 @@
-package com.allianz.app.student.repository.entity;
+package com.allianz.app.course.repository.entity;
 
-import com.allianz.app.course.repository.entity.CourseEntity;
+import com.allianz.app.student.repository.entity.StudentEntity;
 import com.querydsl.core.annotations.QueryEntity;
 import lombok.AccessLevel;
 import lombok.Getter;
@@ -8,26 +8,18 @@ import lombok.Setter;
 import lombok.experimental.FieldDefaults;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
-import org.springframework.data.mongodb.core.mapping.DocumentReference;
-
-import java.util.List;
 
 @Getter
 @Setter
 @QueryEntity
-@Document(collection = "student")
+@Document(collection = "course")
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class StudentEntity {
+public class CourseEntity {
 
     @Id
     String id;
-
-    String firstName;
-    String lastName;
-    Long age;
+    String name;
+    String learningTime;
     String status;
-
-    @DocumentReference
-    List<CourseEntity> courses;
 
 }
