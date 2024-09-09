@@ -1,16 +1,38 @@
 package com.allianz.app.student.controller;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import com.allianz.app.student.model.StudentCriteria;
+import com.allianz.app.student.model.StudentDto;
+import com.allianz.app.student.service.StudentService;
+import lombok.AllArgsConstructor;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
-@RequestMapping("/api/v1")
+@AllArgsConstructor
+@RequestMapping("/api/v1/student")
 public class StudentController {
 
+    StudentService studentService;
+
     @GetMapping
-    public String sayHello() {
-        return "Hello World!";
+    public List<StudentDto> getAll(StudentCriteria criteria) {
+        return studentService.getAll(criteria);
+    }
+
+    @PostMapping
+    public StudentDto create(@RequestBody StudentDto dto) {
+        return studentService.create(dto);
+    }
+
+    @PutMapping("/{id}")
+    public StudentDto update(@RequestBody StudentDto dto, @PathVariable String id) {
+        return studentService.update(id, dto);
+    }
+
+    @DeleteMapping("/{id}")
+    public void delete(@PathVariable String id) {
+        studentService.delete(id);
     }
 
 }
